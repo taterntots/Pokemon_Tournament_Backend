@@ -10,7 +10,13 @@ module.exports = {
 }
 
 function find() {
-  return db('pokemon');
+  return db('pokemon as p')
+    .select(
+      'p.id as dex#',
+      'p.name',
+      't.name as type1'
+    )
+    .join('types as t', 't.id', 'p.type1_id');
 }
 
 function findBy(filter) {
@@ -41,6 +47,6 @@ function update(id, changes) {
 
 function remove(id) {
   return db("pokemon")
-      .where("id", id)
-      .del();
+    .where("id", id)
+    .del();
 }
