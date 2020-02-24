@@ -12,7 +12,7 @@ module.exports = {
 function find() {
   return db('pokemon as p')
     .select(
-      'p.id as dex#',
+      'p.id as dexNum',
       'p.name',
       't.name as type1'
     )
